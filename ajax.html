@@ -1,0 +1,170 @@
+<html>
+
+  <head>
+    <title>Form Validation</title>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <style type="text/css">
+
+      body {
+        font-family: Calibiri;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        
+        
+      }
+
+      #container {
+        width: 500%;
+        position: relative;
+        width: 800px;
+        height: 800px;
+    
+      }
+
+      label{
+
+       width: 200px;
+       float: left;
+       font-family: "calibiri";
+       font-size: 27px;
+        
+        
+      }
+
+      input {
+        width: 250px;
+        border-radius: 5%;
+        border-color: grey solid 1px;
+        padding: 13px 5px;
+        
+
+      }
+
+      #submit {
+        cursor: pointer;
+
+      }
+      #submit:hover{
+        background-color:rgb(214, 205, 205);
+      }
+
+      #errorMessage {
+        color: red;
+        font-size: 15px;
+      }
+
+      #successMessage {
+        color: green;
+        font-size: 27px;
+        display: none;
+      }
+    </style>
+
+    
+
+
+
+  </head>
+
+  <body>
+
+    
+
+    <div id="container">
+
+        <div id="errorMessage"></div>
+        <div id="successMessage">You did it..</div>
+
+    <p><label for="email" >Email</label>
+    <input type="text" id="emailid" placeholder="eg.@example,com"></p>
+
+    <p><label for="phonenumber"  >Contact No</label>
+    <input type="text" id="number" placeholder="12345"></p>
+
+    <p><label for="password" >Password</label>
+    <input type="password" id="password" ></p>
+
+    <p><label for="confirmedpassword" >Confirmed Password</label>
+    <input type="confirmedpassword" id="confirmedpassword" ></p>
+
+    <p><input type="submit" value="Submit" id="submit"></p>
+
+</div>
+    <script> 
+         function isEmail(email) {
+             var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+             return filter.test(email);
+         }
+    
+         $("#submit").click (function (){
+          
+
+             var errorMessage = "";
+             var missingfeilds = "";
+
+             if ($("#emailid").val() == ""){
+                missingfeilds +="<br>Email"
+             };
+          
+        if ($("#number").val() == ""){
+           missingfeilds +="<br>Number"
+        }
+
+        if ($("#password").val() == ""){
+           missingfeilds +="<br>password"
+        }
+
+        if ($("#confirmedpassword").val() == ""){
+           missingfeilds +="<br>confirmedpassword"
+        }
+
+        if ($ (missingfeilds != "")){
+            errorMessage += "The following feilds are missing" +missingfeilds;
+        }
+
+        if (isEmail ($("#emailid").val()) == false){
+        errorMessage += "<br>Enter a valid Email Address"
+        }
+
+        if ($.isNumeric($("#number").val())==false) {
+            errorMessage +=" <br> Enter a valid phone no"
+        
+        }
+
+        if($("#password").val() != $("#confirmedpassword").val()) {
+
+        errorMessage +="<br>Password does not match";
+        }
+
+        if ($("#password").val() != $("#confirmedpassword").val()) {
+                errorMessage += "<br>Password does not match";
+            }
+
+        
+
+     if (missingfeilds != "" ){
+        $("#errorMessage").html(errorMessage).show();
+        $("#successMessage").hide();
+     } else {
+       $("#successMessage").show();
+       $("#errorMessage").hide();
+       
+
+      } 
+
+    });
+
+     
+
+
+    </script>
+
+
+  </body>
+
+</html>
